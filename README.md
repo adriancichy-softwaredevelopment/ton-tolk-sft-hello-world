@@ -1,27 +1,50 @@
 # TON Tolk SFT Hello World
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YOUR_USERNAME/ton-tolk-sft-hello-world/blob/main/ton_sft_tolk_hello_world.ipynb)
+
 A complete, runnable **Supervised Fine-Tuning (SFT)** pipeline packaged as a Google Colab notebook.
 
 The goal is to specialize a small open-weights LLM (Llama-3.2-3B-Instruct or Qwen2.5-Coder-7B-Instruct) on the **TON blockchain** ecosystem — focusing on the modern **Tolk** smart contract language, the **Acton** toolchain, message handling, storage patterns, and secure contract development.
 
+## Quick Start
+
+### Option A — From GitHub (recommended)
+```bash
+git clone https://github.com/YOUR_USERNAME/ton-tolk-sft-hello-world.git
+cd ton-tolk-sft-hello-world
+```
+
+Then open `ton_sft_tolk_hello_world.ipynb` in Google Colab:
+- Go to [colab.research.google.com](https://colab.research.google.com)
+- File → Open notebook → GitHub tab → select this repo
+
+### Option B — Direct Colab
+1. Open the notebook directly via the "Open in Colab" badge above, or
+2. Download `ton_sft_tolk_hello_world.ipynb` and upload it to Colab.
+
+## Run Instructions (Colab)
+1. **Runtime → Change runtime type → GPU** (T4 is free tier; L4 is better)
+2. If using `meta-llama/Llama-3.2-3B-Instruct`:
+   - Accept the license on Hugging Face
+   - Create a read token at https://huggingface.co/settings/tokens
+   - In Colab, use the **Secrets** panel (key icon) and add `HF_TOKEN`
+3. Run all cells top-to-bottom.
+
+The notebook includes:
+- Automatic BF16 (L4) vs 4-bit (T4) loading
+- LoRA fine-tuning with `SFTTrainer`
+- Conversational dataset format
+- **Full Acton integration** for validating generated Tolk contracts (`acton build`, `acton test`, `acton check`, etc.)
+- Data scaling helpers and links to all audited documentation sources
+
 ## Files
 
-- `ton_sft_tolk_hello_world.ipynb` — The main deliverable. Upload or open directly in Google Colab.
-- `create_ton_sft_notebook.py` — Python script that (re)generates the notebook. Edit this if you want to change the pipeline, seed data, or instructions.
-
-## Quick Start in Google Colab
-
-1. Download `ton_sft_tolk_hello_world.ipynb`
-2. Go to [colab.research.google.com](https://colab.research.google.com)
-3. File → Upload notebook (or "Open notebook" from GitHub / Drive)
-4. **Runtime → Change runtime type → GPU** (T4 is free; L4 is better if available in your Colab plan)
-5. If using a gated model (`meta-llama/Llama-3.2-...`):
-   - Visit the model page on Hugging Face and accept the license
-   - Create a Hugging Face token (read) at https://huggingface.co/settings/tokens
-   - In Colab, click the **key icon** (Secrets) on the left → add `HF_TOKEN`
-6. Run cells top-to-bottom (the first few install everything and detect your GPU/precision)
-
-**New in this version**: Dedicated **Acton toolchain** section near the end. It installs the real `acton` CLI (the official TON/Tolk build & test kit) and demonstrates `acton build` + `acton test` on generated contracts. Re-run the install cell on every new runtime.
+| File | Purpose |
+|------|---------|
+| `ton_sft_tolk_hello_world.ipynb` | Main deliverable — the complete SFT + Acton pipeline |
+| `create_ton_sft_notebook.py` | Generator script. Re-run this if you want to modify the notebook programmatically |
+| `README.md` | This file |
+| `.gitignore` | Sensible ignores for Python + Jupyter + model artifacts |
 
 The notebook contains:
 - Automatic BF16 (L4) vs 4-bit NF4 (T4) selection
