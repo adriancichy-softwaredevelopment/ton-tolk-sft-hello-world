@@ -1,6 +1,6 @@
 # TON Tolk SFT Hello World
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YOUR_USERNAME/ton-tolk-sft-hello-world/blob/main/ton_sft_tolk_hello_world.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/adriancichy-softwaredevelopment/ton-tolk-sft-hello-world/blob/main/notebooks/TON_Tolk_SFT_HelloWorld.ipynb)
 
 A complete, runnable **Supervised Fine-Tuning (SFT)** pipeline packaged as a Google Colab notebook.
 
@@ -10,17 +10,17 @@ The goal is to specialize a small open-weights LLM (Llama-3.2-3B-Instruct or Qwe
 
 ### Option A — From GitHub (recommended)
 ```bash
-git clone https://github.com/YOUR_USERNAME/ton-tolk-sft-hello-world.git
+git clone https://github.com/adriancichy-softwaredevelopment/ton-tolk-sft-hello-world.git
 cd ton-tolk-sft-hello-world
 ```
 
-Then open `ton_sft_tolk_hello_world.ipynb` in Google Colab:
+Then open `notebooks/TON_Tolk_SFT_HelloWorld.ipynb` in Google Colab:
 - Go to [colab.research.google.com](https://colab.research.google.com)
 - File → Open notebook → GitHub tab → select this repo
 
 ### Option B — Direct Colab
 1. Open the notebook directly via the "Open in Colab" badge above, or
-2. Download `ton_sft_tolk_hello_world.ipynb` and upload it to Colab.
+2. Download `notebooks/TON_Tolk_SFT_HelloWorld.ipynb` and upload it to Colab.
 
 ## Run Instructions (Colab)
 1. **Runtime → Change runtime type → GPU** (T4 is free tier; L4 is better)
@@ -37,12 +37,24 @@ The notebook includes:
 - **Full Acton integration** for validating generated Tolk contracts (`acton build`, `acton test`, `acton check`, etc.)
 - Data scaling helpers and links to all audited documentation sources
 
+## Project Structure
+
+```
+ton-tolk-sft-hello-world/
+├── README.md
+├── LICENSE
+├── .gitignore
+├── generate_notebook.py          # Re-runs to (re)generate the notebook
+├── notebooks/
+│   └── TON_Tolk_SFT_HelloWorld.ipynb   # Main deliverable
+```
+
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `ton_sft_tolk_hello_world.ipynb` | Main deliverable — the complete SFT + Acton pipeline |
-| `create_ton_sft_notebook.py` | Generator script. Re-run this if you want to modify the notebook programmatically |
+| `notebooks/TON_Tolk_SFT_HelloWorld.ipynb` | Main deliverable — the complete SFT + Acton pipeline |
+| `generate_notebook.py` | Generator script. Re-run this if you want to modify the notebook programmatically |
 | `README.md` | This file |
 | `.gitignore` | Sensible ignores for Python + Jupyter + model artifacts |
 

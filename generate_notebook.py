@@ -2,7 +2,7 @@
 """
 Generate a complete, production-quality 'Hello World' SFT notebook
 for fine-tuning a small LLM on TON / Tolk / Acton domain.
-Run this script locally to produce ton_sft_tolk_hello_world.ipynb
+Run this script locally to produce notebooks/TON_Tolk_SFT_HelloWorld.ipynb
 Then upload that notebook to Google Colab.
 """
 
@@ -883,7 +883,7 @@ Happy building on The Open Network!
 
 def main():
     nb = build_notebook()
-    out_path = Path("ton_sft_tolk_hello_world.ipynb")
+    out_path = Path("notebooks/TON_Tolk_SFT_HelloWorld.ipynb")
     out_path.write_text(json.dumps(nb, indent=1, ensure_ascii=False))
     print(f"Notebook written to {out_path.resolve()}")
     print(f"Total cells: {len(nb['cells'])}")
