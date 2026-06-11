@@ -1,0 +1,6 @@
+# These packages are only needed if you want to run generate_notebook.py locally
+# (for example, to customize the notebook).
+#
+# They are NOT required when opening and running the notebook in Google Colab.
+
+nbformat>=5.10.0

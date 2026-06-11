@@ -55,10 +55,10 @@ def build_notebook() -> dict:
 ## 1. Prerequisites & Colab Setup
 
 1. **Runtime**: Runtime → Change runtime type → **GPU** (T4 or L4)
-2. **HF Token** (required for Llama models):
-   - Go to https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct → Accept the license
-   - Create a token at https://huggingface.co/settings/tokens (read access)
+2. **HF Token** (recommended, required for gated models like Llama):
+   - Go to https://huggingface.co/settings/tokens (read access)
    - In Colab: `Secrets` (left sidebar key icon) → Name: `HF_TOKEN`
+   - (Not strictly needed for the current non-gated default model)
 3. **Your own data** (later): Prepare folders with `.tolk` files + `.md`/`.txt` docs. We provide a seed dataset + loaders below.
 4. This is a **Hello World** — the tiny seed dataset will cause the model to strongly memorize the style and a few patterns. Replace with 200–2000+ high-quality examples for real specialization.
 """))
@@ -152,17 +152,18 @@ def build_notebook() -> dict:
     cells.append(md_cell("""
 ## 5. Choose Base Model
 
-**Recommended for this task**:
-- **Primary (small & Colab-friendly)**: `meta-llama/Llama-3.2-3B-Instruct`
-- **Excellent coder alternative**: `Qwen/Qwen2.5-Coder-7B-Instruct` (stronger code reasoning, ~2× slower on T4)
+**Recommended for this task** (temporary non-gated default):
+- **Primary (small & Colab-friendly, non-gated)**: `Qwen/Qwen2.5-3B-Instruct`
+- **Strong coder alternative**: `Qwen/Qwen2.5-Coder-7B-Instruct` (better at code, ~2× slower on T4)
 
-**Note**: Llama-3.2 models are gated. You must accept the license and provide a valid `HF_TOKEN`.
-Qwen2.5 models are generally open-weights and easier to load.
+**Note**: The previous default `meta-llama/Llama-3.2-3B-Instruct` is gated. You must accept the Llama license on HF and provide a valid `HF_TOKEN` to use it.
+Qwen2.5 models are open-weights and load without approval.
 """))
 
     cells.append(code_cell([
         "# === CONFIGURE YOUR MODEL HERE ===",
-        "MODEL_NAME = 'meta-llama/Llama-3.2-3B-Instruct'   # or 'Qwen/Qwen2.5-Coder-7B-Instruct'",
+        "MODEL_NAME = 'Qwen/Qwen2.5-3B-Instruct'   # non-gated, strong small model. Alternative: 'Qwen/Qwen2.5-Coder-7B-Instruct'",
+        "# To use Llama 3.2 instead (gated): MODEL_NAME = 'meta-llama/Llama-3.2-3B-Instruct'  (requires HF access approval + token)",
         "",
         "# For gated models (Llama), load token from Colab Secrets or env var",
         "HF_TOKEN = None",

@@ -24,18 +24,32 @@ Then open `notebooks/TON_Tolk_SFT_HelloWorld.ipynb` in Google Colab:
 
 ## Run Instructions (Colab)
 1. **Runtime → Change runtime type → GPU** (T4 is free tier; L4 is better)
-2. If using `meta-llama/Llama-3.2-3B-Instruct`:
-   - Accept the license on Hugging Face
+2. The notebook currently defaults to the **non-gated** `Qwen/Qwen2.5-3B-Instruct` (no license approval needed).
+
+If you want to switch back to the gated `meta-llama/Llama-3.2-3B-Instruct`:
+   - Accept the Llama 3.2 license at https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct
    - Create a read token at https://huggingface.co/settings/tokens
    - In Colab, use the **Secrets** panel (key icon) and add `HF_TOKEN`
+   - Change `MODEL_NAME` at the top of the notebook.
 3. Run all cells top-to-bottom.
 
 The notebook includes:
 - Automatic BF16 (L4) vs 4-bit (T4) loading
 - LoRA fine-tuning with `SFTTrainer`
-- Conversational dataset format
-- **Full Acton integration** for validating generated Tolk contracts (`acton build`, `acton test`, `acton check`, etc.)
-- Data scaling helpers and links to all audited documentation sources
+- Conversational `{"messages": [...]}` dataset format
+- **Full Acton integration** — install the real toolchain and validate model-generated Tolk code with `acton build`, `acton test`, `acton check`, `acton fmt`, etc.
+- Data scaling helpers + curated links to all the official docs we audited (Acton + TON Tolk docs, llms.txt files, agent skills, reference contracts)
+- A generator script so you can easily modify and regenerate the notebook
+
+## Regenerating the Notebook
+
+If you edit `generate_notebook.py`, you can recreate the notebook with:
+
+```bash
+python generate_notebook.py
+```
+
+This will overwrite `notebooks/TON_Tolk_SFT_HelloWorld.ipynb`.
 
 ## Project Structure
 
