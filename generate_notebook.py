@@ -63,6 +63,75 @@ def build_notebook() -> dict:
 4. This is a **Hello World** — the tiny seed dataset will cause the model to strongly memorize the style and a few patterns. Replace with 200–2000+ high-quality examples for real specialization.
 """))
 
+    cells.append(md_cell("""
+## Connect AI Agent (Grok / Claude / Cursor) via Colab MCP — Real Feedback Loop
+
+This project is designed for tight iteration. You can give the AI (me) direct access to a Colab notebook you're working in using Google's official open-source **Colab MCP Server** (Model Context Protocol).
+
+The MCP server runs locally on your machine (the one running the AI agent) and bridges to any Colab notebook you have open in your browser. Once connected, the agent can:
+
+- Add, edit, move, and structure notebook cells
+- Write and execute code cells (including the full SFT training, Acton builds/tests, etc.)
+- Read cell outputs, logs, variables, and filesystem state
+- Drive the entire pipeline in a closed loop — no more copy-pasting outputs back and forth
+
+### Prerequisites (on the machine running your AI agent / Grok / Claude etc.)
+
+- Python + git
+- `uv` (the fast Python package runner): `pip install uv`
+
+### Step 1: Add the Colab MCP server to your AI client (one-time)
+
+**For Grok** (already configured in this environment via `grok mcp add`):
+
+```toml
+[mcp_servers.colab-mcp]
+command = "uvx"
+args = ["git+https://github.com/googlecolab/colab-mcp"]
+enabled = true
+startup_timeout_sec = 30
+```
+
+(If using a corporate PyPI mirror you may need to append `--index https://pypi.org/simple` to `args`.)
+
+**For other clients** (Claude Desktop, Cursor, Gemini CLI, Windsurf, or any `.mcp.json` / mcpServers config), use the equivalent:
+
+```json
+"mcpServers": {
+  "colab-mcp": {
+    "command": "uvx",
+    "args": ["git+https://github.com/googlecolab/colab-mcp"],
+    "timeout": 30000
+  }
+}
+```
+
+Official repo + more details: https://github.com/googlecolab/colab-mcp
+
+### Step 2: Open this notebook in Google Colab (browser)
+
+1. Open the notebook in Google Colab (GPU runtime recommended for training).
+2. **Keep the Colab browser tab open and visible** while chatting with the agent.
+3. (Optional but recommended) Run the early cells manually once (installs, Acton, etc.) so the runtime is warm.
+
+The Colab MCP server does **not** require any special pip install or magic command *inside* the Colab notebook. It connects to the open browser session from the outside.
+
+### Step 3: Use the tools from the agent
+
+In this (or your) chat with the agent, say things like:
+
+- "Search for colab tools"
+- "List available colab-mcp tools"
+- Or directly: "Using the open Colab notebook, create a new cell at the top that prints the current GPU and run it."
+- "In the Colab notebook, run the training cells and report the loss curve and final adapter size."
+
+The agent will use `search_tool` + `use_tool` (with `colab-mcp__...` tool names) to interact with the live notebook.
+
+This is the best way to rapidly iterate on the SFT pipeline, expand the dataset, debug Acton integration, validate generated contracts, etc.
+
+Official announcement: https://developers.googleblog.com/announcing-the-colab-mcp-server-connect-any-ai-agent-to-google-colab/
+"""))
+
     # ========== 2. INSTALL ==========
     cells.append(md_cell("## 2. Install Dependencies"))
 
