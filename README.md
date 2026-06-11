@@ -125,7 +125,7 @@ Other essentials:
 - Official VS Code extension (ton-core.vscode-ton) for full Tolk LSP + Acton integration.
 
 ### Notebook Integration
-The `ton_sft_tolk_hello_world.ipynb` now contains an expanded **## 15. Acton Toolchain** section (after the inference/merge cells) with:
+The `notebooks/TON_Tolk_SFT_HelloWorld.ipynb` now contains an expanded **## 15. Acton Toolchain** section (after the inference/merge cells) with:
 - Robust Colab install + `acton doctor`
 - Quality gates (`fmt --check`, `check`, `build`, `test` + coverage/gas notes)
 - Realistic demo that takes "model output", writes it into a real project `contracts/*.tolk`, then runs the full modern validation pipeline (`build` + `wrapper` + `check` + `fmt --check` + `test`)
