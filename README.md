@@ -39,6 +39,7 @@ The notebook includes:
 - Conversational `{"messages": [...]}` dataset format
 - **Full Acton integration** — install the real toolchain and validate model-generated Tolk code with `acton build`, `acton test`, `acton check`, `acton fmt`, etc.
 - Data scaling helpers + curated links to all the official docs we audited (Acton + TON Tolk docs, llms.txt files, agent skills, reference contracts)
+- **Colab MCP integration** — connect local AI agents (Grok, Claude, Cursor, etc.) directly to the running notebook for closed-loop cell execution, inspection, and iteration (see the "Connect AI Agent via Colab MCP" section in the notebook)
 - A generator script so you can easily modify and regenerate the notebook
 
 ## Regenerating the Notebook
